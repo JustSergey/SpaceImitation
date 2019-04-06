@@ -79,10 +79,6 @@
             // 
             this.pattern_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pattern_comboBox.FormattingEnabled = true;
-            this.pattern_comboBox.Items.AddRange(new object[] {
-            "Earth",
-            "Moon",
-            "Jupiter"});
             this.pattern_comboBox.Location = new System.Drawing.Point(894, 15);
             this.pattern_comboBox.Name = "pattern_comboBox";
             this.pattern_comboBox.Size = new System.Drawing.Size(141, 21);

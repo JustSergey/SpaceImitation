@@ -22,5 +22,6 @@ namespace SpaceImitation
         public static SpaceObject Earth => new SpaceObject(156, 4, Color.LimeGreen);
         public static SpaceObject Moon => new SpaceObject(2, 1, Color.LightGray);
         public static SpaceObject Jupiter => new SpaceObject(49497, 44, Color.SandyBrown);
+        public static SpaceObject Sun => new SpaceObject(51938640, 435, Color.LightYellow);
     }
 }

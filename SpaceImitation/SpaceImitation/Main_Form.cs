@@ -21,6 +21,12 @@ namespace SpaceImitation
             Y = y;
         }
 
+        public Vector(Vector vector)
+        {
+            X = vector.X;
+            Y = vector.Y;
+        }
+
         public void Normalize()
         {
             this /= Length;
@@ -58,6 +64,13 @@ namespace SpaceImitation
         private static int scale = 0;
         private float _Scale => (float)Math.Pow(0.9099, scale);
         private Vector offset;
+        private Dictionary<Keys, Vector> direction = new Dictionary<Keys, Vector>()
+        {
+            { Keys.W, new Vector(0f, -20f) },
+            { Keys.A, new Vector(-20f, 0f) },
+            { Keys.S, new Vector(0f, 20f) },
+            { Keys.D, new Vector(20f, 0f) }
+        };
 
         public Main_Form()
         {
@@ -65,6 +78,10 @@ namespace SpaceImitation
             picture = new Bitmap(pictureBox.Width, pictureBox.Height);
             graphics = Graphics.FromImage(picture);
             spaceObjects = new List<SpaceObject>();
+
+            var properties = typeof(SpaceObject).GetProperties();
+            for (int i = 0; i < properties.Length; i++)
+                pattern_comboBox.Items.Add(properties[i].Name);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -99,7 +116,7 @@ namespace SpaceImitation
         {
             if (pattern_comboBox.SelectedIndex == -1)
                 return;
-            var property = typeof(SpaceObject).GetProperty(pattern_comboBox.SelectedItem.ToString());
+            var property = typeof(SpaceObject).GetProperties()[pattern_comboBox.SelectedIndex];
             SpaceObject spaceObject = (SpaceObject)property.GetValue(null);
 
             spaceObject.Position = e.Location;
@@ -173,31 +190,15 @@ namespace SpaceImitation
                 graphics.ScaleTransform(1.099f, 1.099f);
                 scale++;
             }
-            if (e.KeyCode == Keys.Q && scale > -40)
+            else if (e.KeyCode == Keys.Q && scale > -40)
             {
                 graphics.ScaleTransform(0.9099f, 0.9099f);
                 scale--;
             }
-            if (e.KeyCode == Keys.D)
-            {
-                graphics.TranslateTransform(-_Scale * 20f, 0f);
-                offset.X += 20f;
-            }
-            if (e.KeyCode == Keys.A)
-            {
-                graphics.TranslateTransform(_Scale * 20f, 0f);
-                offset.X -= 20f;
-            }
-            if (e.KeyCode == Keys.S)
-            {
-                graphics.TranslateTransform(0f, -_Scale * 20f);
-                offset.Y += 20f;
-            }
-            if (e.KeyCode == Keys.W)
-            {
-                graphics.TranslateTransform(0f, _Scale * 20f);
-                offset.Y -= 20f;
-            }
+            direction.TryGetValue(e.KeyCode, out Vector dir);
+            offset += dir;
+            dir *= -_Scale;
+            graphics.TranslateTransform(dir.X, dir.Y);
         }
 
         private void Pattern_comboBox_KeyPress(object sender, KeyPressEventArgs e)
