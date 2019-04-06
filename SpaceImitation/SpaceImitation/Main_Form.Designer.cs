@@ -37,6 +37,7 @@
             this.button_remove = new System.Windows.Forms.Button();
             this.velocity_label = new System.Windows.Forms.Label();
             this.tail_checkBox = new System.Windows.Forms.CheckBox();
+            this.info_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,11 +119,21 @@
             this.tail_checkBox.Text = "Tail";
             this.tail_checkBox.UseVisualStyleBackColor = true;
             // 
+            // info_label
+            // 
+            this.info_label.AutoSize = true;
+            this.info_label.Location = new System.Drawing.Point(385, 18);
+            this.info_label.Name = "info_label";
+            this.info_label.Size = new System.Drawing.Size(127, 13);
+            this.info_label.TabIndex = 8;
+            this.info_label.Text = "Move: WASD, Scale: QE";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1209, 779);
+            this.Controls.Add(this.info_label);
             this.Controls.Add(this.tail_checkBox);
             this.Controls.Add(this.velocity_label);
             this.Controls.Add(this.button_remove);
@@ -151,6 +162,7 @@
         private System.Windows.Forms.Button button_remove;
         private System.Windows.Forms.Label velocity_label;
         private System.Windows.Forms.CheckBox tail_checkBox;
+        private System.Windows.Forms.Label info_label;
     }
 }
 
