@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Collections.Generic;
 
 namespace SpaceImitation
 {
@@ -9,6 +10,7 @@ namespace SpaceImitation
         public Vector Position;
         public Vector Velocity;
         public Color Color;
+        public List<Vector> Tail;
 
         public SpaceObject(int mass, int radius, Color color)
         {
@@ -17,6 +19,7 @@ namespace SpaceImitation
             Position = new Vector();
             Velocity = new Vector();
             Color = color;
+            Tail = new List<Vector>();
         }
 
         public static SpaceObject Earth => new SpaceObject(156, 4, Color.LimeGreen);

@@ -36,9 +36,12 @@
             this.pattern_comboBox = new System.Windows.Forms.ComboBox();
             this.button_remove = new System.Windows.Forms.Button();
             this.velocity_label = new System.Windows.Forms.Label();
-            this.tail_checkBox = new System.Windows.Forms.CheckBox();
             this.info_label = new System.Windows.Forms.Label();
+            this.tail_trackBar = new System.Windows.Forms.TrackBar();
+            this.tail_label = new System.Windows.Forms.Label();
+            this.info_tail_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tail_trackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -105,37 +108,59 @@
             this.velocity_label.TabIndex = 6;
             this.velocity_label.Text = "Velocity: 0.00";
             // 
-            // tail_checkBox
-            // 
-            this.tail_checkBox.AutoSize = true;
-            this.tail_checkBox.Location = new System.Drawing.Point(93, 17);
-            this.tail_checkBox.Name = "tail_checkBox";
-            this.tail_checkBox.Size = new System.Drawing.Size(43, 17);
-            this.tail_checkBox.TabIndex = 7;
-            this.tail_checkBox.Text = "Tail";
-            this.tail_checkBox.UseVisualStyleBackColor = true;
-            // 
             // info_label
             // 
             this.info_label.AutoSize = true;
-            this.info_label.Location = new System.Drawing.Point(385, 18);
+            this.info_label.Location = new System.Drawing.Point(156, 18);
             this.info_label.Name = "info_label";
             this.info_label.Size = new System.Drawing.Size(127, 13);
             this.info_label.TabIndex = 8;
             this.info_label.Text = "Move: WASD, Scale: QE";
+            // 
+            // tail_trackBar
+            // 
+            this.tail_trackBar.LargeChange = 100;
+            this.tail_trackBar.Location = new System.Drawing.Point(443, 12);
+            this.tail_trackBar.Maximum = 2000;
+            this.tail_trackBar.Name = "tail_trackBar";
+            this.tail_trackBar.Size = new System.Drawing.Size(213, 45);
+            this.tail_trackBar.SmallChange = 50;
+            this.tail_trackBar.TabIndex = 9;
+            this.tail_trackBar.TickFrequency = 100;
+            this.tail_trackBar.Scroll += new System.EventHandler(this.Tail_trackBar_Scroll);
+            // 
+            // tail_label
+            // 
+            this.tail_label.AutoSize = true;
+            this.tail_label.Location = new System.Drawing.Point(662, 18);
+            this.tail_label.Name = "tail_label";
+            this.tail_label.Size = new System.Drawing.Size(13, 13);
+            this.tail_label.TabIndex = 10;
+            this.tail_label.Text = "0";
+            // 
+            // info_tail_label
+            // 
+            this.info_tail_label.AutoSize = true;
+            this.info_tail_label.Location = new System.Drawing.Point(410, 18);
+            this.info_tail_label.Name = "info_tail_label";
+            this.info_tail_label.Size = new System.Drawing.Size(27, 13);
+            this.info_tail_label.TabIndex = 11;
+            this.info_tail_label.Text = "Tail:";
             // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1209, 779);
+            this.Controls.Add(this.info_tail_label);
+            this.Controls.Add(this.tail_label);
             this.Controls.Add(this.info_label);
-            this.Controls.Add(this.tail_checkBox);
             this.Controls.Add(this.velocity_label);
             this.Controls.Add(this.button_remove);
             this.Controls.Add(this.pattern_comboBox);
             this.Controls.Add(this.button_play);
             this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.tail_trackBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -143,6 +168,7 @@
             this.Text = "Space";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_Form_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tail_trackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,8 +183,10 @@
         private System.Windows.Forms.ComboBox pattern_comboBox;
         private System.Windows.Forms.Button button_remove;
         private System.Windows.Forms.Label velocity_label;
-        private System.Windows.Forms.CheckBox tail_checkBox;
         private System.Windows.Forms.Label info_label;
+        private System.Windows.Forms.TrackBar tail_trackBar;
+        private System.Windows.Forms.Label tail_label;
+        private System.Windows.Forms.Label info_tail_label;
     }
 }
 

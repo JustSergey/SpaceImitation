@@ -109,6 +109,10 @@ namespace SpaceImitation
                 }
                 if (i < spaceObjects.Count)
                     spaceObjects[i].Position += spaceObjects[i].Velocity;
+
+                spaceObjects[i].Tail.Add(spaceObjects[i].Position);
+                while (spaceObjects[i].Tail.Count > tail_trackBar.Value)
+                    spaceObjects[i].Tail.RemoveAt(0);
             }
         }
 
@@ -163,14 +167,16 @@ namespace SpaceImitation
 
         private void Draw_timer_Tick(object sender, EventArgs e)
         {
-            if (!tail_checkBox.Checked)
-                graphics.Clear(Color.Black);
+            graphics.Clear(Color.Black);
             for (int i = 0; i < spaceObjects.Count; i++)
             {
                 float radius = spaceObjects[i].Radius * 0.5f;
                 float x = spaceObjects[i].Position.X - radius * 0.5f;
                 float y = spaceObjects[i].Position.Y - radius * 0.5f;
-                graphics.DrawEllipse(new Pen(spaceObjects[i].Color, radius), x, y, radius, radius);
+                Pen pen = new Pen(spaceObjects[i].Color, radius);
+                graphics.DrawEllipse(pen, x, y, radius, radius);
+                for (int j = 1; j < spaceObjects[i].Tail.Count; j++)
+                    graphics.DrawLine(pen, spaceObjects[i].Tail[j - 1], spaceObjects[i].Tail[j]);
             }
             if (mouse.IsDown) 
                 graphics.DrawLine(new Pen(Color.Red, _Scale * 4.0f), mouse.SpaceObject.Position, mouse.Position);
@@ -210,6 +216,11 @@ namespace SpaceImitation
         private void Pattern_comboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void Tail_trackBar_Scroll(object sender, EventArgs e)
+        {
+            tail_label.Text = tail_trackBar.Value.ToString();
         }
     }
 }
