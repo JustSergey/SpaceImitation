@@ -187,13 +187,19 @@ namespace SpaceImitation
         {
             if (e.KeyCode == Keys.E && scale < 40)
             {
+                graphics.TranslateTransform(mouse.Position.X, mouse.Position.Y);
                 graphics.ScaleTransform(1.099f, 1.099f);
+                graphics.TranslateTransform(-mouse.Position.X, -mouse.Position.Y);
                 scale++;
+                offset += mouse.Position * 0.0901f / _Scale;
             }
             else if (e.KeyCode == Keys.Q && scale > -40)
             {
+                graphics.TranslateTransform(mouse.Position.X, mouse.Position.Y);
                 graphics.ScaleTransform(0.9099f, 0.9099f);
+                graphics.TranslateTransform(-mouse.Position.X, -mouse.Position.Y);
                 scale--;
+                offset -= mouse.Position * 0.099f / _Scale;
             }
             direction.TryGetValue(e.KeyCode, out Vector dir);
             offset += dir;
