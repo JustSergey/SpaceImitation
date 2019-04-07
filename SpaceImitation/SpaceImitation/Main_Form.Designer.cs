@@ -36,12 +36,15 @@
             this.pattern_comboBox = new System.Windows.Forms.ComboBox();
             this.button_remove = new System.Windows.Forms.Button();
             this.velocity_label = new System.Windows.Forms.Label();
-            this.info_label = new System.Windows.Forms.Label();
+            this.info_game_speed_label = new System.Windows.Forms.Label();
             this.tail_trackBar = new System.Windows.Forms.TrackBar();
             this.tail_label = new System.Windows.Forms.Label();
             this.info_tail_label = new System.Windows.Forms.Label();
+            this.game_speed_trackBar = new System.Windows.Forms.TrackBar();
+            this.game_speed_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tail_trackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.game_speed_trackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -82,7 +85,7 @@
             // 
             this.pattern_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pattern_comboBox.FormattingEnabled = true;
-            this.pattern_comboBox.Location = new System.Drawing.Point(894, 15);
+            this.pattern_comboBox.Location = new System.Drawing.Point(946, 15);
             this.pattern_comboBox.Name = "pattern_comboBox";
             this.pattern_comboBox.Size = new System.Drawing.Size(141, 21);
             this.pattern_comboBox.TabIndex = 2;
@@ -102,29 +105,29 @@
             // velocity_label
             // 
             this.velocity_label.AutoSize = true;
-            this.velocity_label.Location = new System.Drawing.Point(804, 18);
+            this.velocity_label.Location = new System.Drawing.Point(848, 18);
             this.velocity_label.Name = "velocity_label";
             this.velocity_label.Size = new System.Drawing.Size(71, 13);
             this.velocity_label.TabIndex = 6;
             this.velocity_label.Text = "Velocity: 0.00";
             // 
-            // info_label
+            // info_game_speed_label
             // 
-            this.info_label.AutoSize = true;
-            this.info_label.Location = new System.Drawing.Point(156, 18);
-            this.info_label.Name = "info_label";
-            this.info_label.Size = new System.Drawing.Size(127, 13);
-            this.info_label.TabIndex = 8;
-            this.info_label.Text = "Move: WASD, Scale: QE";
+            this.info_game_speed_label.AutoSize = true;
+            this.info_game_speed_label.Location = new System.Drawing.Point(157, 18);
+            this.info_game_speed_label.Name = "info_game_speed_label";
+            this.info_game_speed_label.Size = new System.Drawing.Size(70, 13);
+            this.info_game_speed_label.TabIndex = 8;
+            this.info_game_speed_label.Text = "Game speed:";
             // 
             // tail_trackBar
             // 
             this.tail_trackBar.LargeChange = 100;
-            this.tail_trackBar.Location = new System.Drawing.Point(443, 12);
+            this.tail_trackBar.Location = new System.Drawing.Point(554, 12);
             this.tail_trackBar.Maximum = 2000;
             this.tail_trackBar.Name = "tail_trackBar";
             this.tail_trackBar.Size = new System.Drawing.Size(213, 45);
-            this.tail_trackBar.SmallChange = 50;
+            this.tail_trackBar.SmallChange = 10;
             this.tail_trackBar.TabIndex = 9;
             this.tail_trackBar.TickFrequency = 100;
             this.tail_trackBar.Scroll += new System.EventHandler(this.Tail_trackBar_Scroll);
@@ -132,7 +135,7 @@
             // tail_label
             // 
             this.tail_label.AutoSize = true;
-            this.tail_label.Location = new System.Drawing.Point(662, 18);
+            this.tail_label.Location = new System.Drawing.Point(773, 18);
             this.tail_label.Name = "tail_label";
             this.tail_label.Size = new System.Drawing.Size(13, 13);
             this.tail_label.TabIndex = 10;
@@ -141,26 +144,49 @@
             // info_tail_label
             // 
             this.info_tail_label.AutoSize = true;
-            this.info_tail_label.Location = new System.Drawing.Point(410, 18);
+            this.info_tail_label.Location = new System.Drawing.Point(521, 18);
             this.info_tail_label.Name = "info_tail_label";
             this.info_tail_label.Size = new System.Drawing.Size(27, 13);
             this.info_tail_label.TabIndex = 11;
             this.info_tail_label.Text = "Tail:";
+            // 
+            // game_speed_trackBar
+            // 
+            this.game_speed_trackBar.Location = new System.Drawing.Point(233, 12);
+            this.game_speed_trackBar.Maximum = 22;
+            this.game_speed_trackBar.Minimum = 3;
+            this.game_speed_trackBar.Name = "game_speed_trackBar";
+            this.game_speed_trackBar.Size = new System.Drawing.Size(189, 45);
+            this.game_speed_trackBar.TabIndex = 12;
+            this.game_speed_trackBar.TickFrequency = 5;
+            this.game_speed_trackBar.Value = 3;
+            this.game_speed_trackBar.Scroll += new System.EventHandler(this.Game_speed_trackBar_Scroll);
+            // 
+            // game_speed_label
+            // 
+            this.game_speed_label.AutoSize = true;
+            this.game_speed_label.Location = new System.Drawing.Point(428, 18);
+            this.game_speed_label.Name = "game_speed_label";
+            this.game_speed_label.Size = new System.Drawing.Size(13, 13);
+            this.game_speed_label.TabIndex = 13;
+            this.game_speed_label.Text = "1";
             // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1209, 779);
+            this.Controls.Add(this.game_speed_label);
             this.Controls.Add(this.info_tail_label);
             this.Controls.Add(this.tail_label);
-            this.Controls.Add(this.info_label);
-            this.Controls.Add(this.velocity_label);
+            this.Controls.Add(this.info_game_speed_label);
             this.Controls.Add(this.button_remove);
             this.Controls.Add(this.pattern_comboBox);
             this.Controls.Add(this.button_play);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.tail_trackBar);
+            this.Controls.Add(this.game_speed_trackBar);
+            this.Controls.Add(this.velocity_label);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -169,6 +195,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_Form_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tail_trackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.game_speed_trackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,10 +210,12 @@
         private System.Windows.Forms.ComboBox pattern_comboBox;
         private System.Windows.Forms.Button button_remove;
         private System.Windows.Forms.Label velocity_label;
-        private System.Windows.Forms.Label info_label;
+        private System.Windows.Forms.Label info_game_speed_label;
         private System.Windows.Forms.TrackBar tail_trackBar;
         private System.Windows.Forms.Label tail_label;
         private System.Windows.Forms.Label info_tail_label;
+        private System.Windows.Forms.TrackBar game_speed_trackBar;
+        private System.Windows.Forms.Label game_speed_label;
     }
 }
 

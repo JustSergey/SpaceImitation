@@ -108,11 +108,13 @@ namespace SpaceImitation
                     spaceObjects[i].Velocity += direction;
                 }
                 if (i < spaceObjects.Count)
+                {
                     spaceObjects[i].Position += spaceObjects[i].Velocity;
 
-                spaceObjects[i].Tail.Add(spaceObjects[i].Position);
-                while (spaceObjects[i].Tail.Count > tail_trackBar.Value)
-                    spaceObjects[i].Tail.RemoveAt(0);
+                    spaceObjects[i].Tail.Add(spaceObjects[i].Position);
+                    while (spaceObjects[i].Tail.Count > tail_trackBar.Value)
+                        spaceObjects[i].Tail.RemoveAt(0);
+                }
             }
         }
 
@@ -137,7 +139,13 @@ namespace SpaceImitation
             mouse.Position += offset;
             mouse.Position *= _Scale;
             if (mouse.IsDown)
-                velocity_label.Text = "Velocity: " + (mouse.Position - mouse.SpaceObject.Position).Length.ToString();
+            {
+                string len = (mouse.Position - mouse.SpaceObject.Position).Length.ToString();
+                int index = len.IndexOf(',');
+                if (len.Length > index + 3 && index != -1)
+                    len = len.Substring(0, index + 3);
+                velocity_label.Text = "Velocity: " + len;
+            }
             else
                 velocity_label.Text = "Velocity: 0.00";
         }
@@ -221,6 +229,15 @@ namespace SpaceImitation
         private void Tail_trackBar_Scroll(object sender, EventArgs e)
         {
             tail_label.Text = tail_trackBar.Value.ToString();
+        }
+
+        private void Game_speed_trackBar_Scroll(object sender, EventArgs e)
+        {
+            timer.Interval = game_speed_trackBar.Value * game_speed_trackBar.Value;
+            string game_speed_text = (3.0f / game_speed_trackBar.Value).ToString();
+            if (game_speed_text.Length > 4)
+                game_speed_text = game_speed_text.Substring(0, 4);
+            game_speed_label.Text = game_speed_text;
         }
     }
 }
